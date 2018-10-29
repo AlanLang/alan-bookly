@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import ComTitle from '../component/ComTitle'
+import { Button } from 'antd-mobile'
+
+import {withRouter} from "react-router-dom";
 
 class Books extends Component {
   constructor () {
@@ -13,12 +16,14 @@ class Books extends Component {
     };
   }
   handleMenuClick(re){
-    console.log(re.key);
+    if("book" === re.key){
+      this.props.history.push('/page/add')
+    }
   }
   render() {
     return (
       <div>
-        <ComTitle menu={this.state.menu} onSelect={this.handleMenuClick}>达达阅读</ComTitle>
+        <ComTitle menu={this.state.menu} onSelect={this.handleMenuClick.bind(this)}>达达阅读</ComTitle>
       </div>
     );
   }
