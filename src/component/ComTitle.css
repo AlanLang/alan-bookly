@@ -1,0 +1,40 @@
+.group{
+  height:40px;
+  width:100%;
+  background: #383838;
+  line-height: 40px;
+  text-align: center;
+  color: white;
+}
+
+.menu{
+  background: #545454;
+  width: 150px;
+  position: absolute;
+  right: 5px;
+  top:45px;
+  padding:0 20px;
+  padding-bottom: 5px;
+}
+.menu div{
+  border-bottom: solid 0.5px #8c8c8c;
+  text-align:center;
+}
+.menu div:last-child{
+  border: none;
+}
+.titleIcon{
+  height: '100%';
+  padding: '0 15px';
+  marginRight: '-15px';
+  display: 'flex';
+  alignItems: 'center';
+}
+.itemIcon{
+  font-size:18px;
+  margin-right: 5px;
+  vertical-align: middle
+}
+.itemText{
+  vertical-align: middle
+}
