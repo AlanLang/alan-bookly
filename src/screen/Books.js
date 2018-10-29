@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ComTitle from '../component/ComTitle'
 import { Button } from 'antd-mobile'
 
-
 class Books extends Component {
   constructor () {
     super()
@@ -23,6 +22,7 @@ class Books extends Component {
     return (
       <div>
         <ComTitle type="none" menu={this.state.menu} onSelect={this.handleMenuClick.bind(this)}>达达阅读</ComTitle>
+        <i className="iconfont icon-plus">123</i>
       </div>
     );
   }
