@@ -3,7 +3,8 @@ import { Button } from 'antd-mobile';
 import styles from './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faGhost,faPlus } from '@fortawesome/free-solid-svg-icons'
-import Books from './screen/Books'
+import LayoutTab from './layout/LayoutTab'
+import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
 
 library.add(faGhost,faPlus)
 class App extends Component {
@@ -12,9 +13,14 @@ class App extends Component {
   }
   render() {
     return (
-      <div className={styles.App}>
-        <Books></Books>
-      </div>
+      <Router>
+        <div className={styles.App}>
+          <Switch>
+            <Route path="/page" component={LayoutTab}/>
+            <Redirect path="/" to={{pathname: '/page'}} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
