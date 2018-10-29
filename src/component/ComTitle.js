@@ -28,6 +28,9 @@ class ComTitle extends Component {
     return contnet;
   }
   renderRight(){
+    if(!this.props.menu){
+      return null;
+    }
     return(
       <Popover mask
         visible = {this.state.showMenu}
@@ -49,7 +52,11 @@ class ComTitle extends Component {
   render() {
     return (
       <div >
-        <NavBar mode="light" rightContent={this.renderRight()}>
+        <NavBar 
+        mode="light" 
+        icon={"left" === this.props.type?<Icon type="left" />:''} 
+        onLeftClick={this.props.onLeftClick}
+        rightContent={this.renderRight()}>
           {this.props.children}
         </NavBar>
       </div>
