@@ -26,19 +26,19 @@ class LayoutTab extends Component {
   handleTabarSelect(item){
     console.log(item)
     if(item.key === 'book'){
-      this.props.history.push('/book')
+      this.props.history.push('/tab/book')
     }
     if('pie' === item.key){
-      this.props.history.push('/report')
+      this.props.history.push('/tab/report')
     }
   }
   render() {
     return (
       <div>
 	      <Switch>
-          <Route path="/book" component={Books}/>
-	        <Route path="/report" component={Report}/>
-	        <Redirect path="" to={{pathname: '/book'}} />
+          <Route path="/tab/book" component={Books}/>
+	        <Route path="/tab/report" component={Report}/>
+	        <Redirect path="" to={{pathname: '/tab/book'}} />
 	      </Switch>
       	<ComTabar tabar={this.state.tabar} selectedTab="book" onTabarSelect={this.handleTabarSelect.bind(this)}></ComTabar>
       </div>
