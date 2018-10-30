@@ -7,50 +7,57 @@ class ComTabar extends Component {
   constructor () {
     super()
     this.state = {
-      selectedTab: 'book',
+      selectedTab:'book',
       hidden: false,
       fullScreen: false,
     };
   }
-  renderItem(code){
+  componentWillMount(){
+    this.setState({
+      selectedTab:this.props.selectedTab
+    })
+  }
+  renderIcon(code){
     return(
       <svg style={{width:"2em",height:"2em"}} aria-hidden="true">
         <use xlinkHref={code}></use>
       </svg> 
     )
   }
+  renderItem(){
+    let contnet = [];
+    if(!this.props.tabar){
+      return contnet;
+    }
+    for(let item of this.props.tabar){
+      contnet.push((
+        <TabBar.Item
+          title={item.text}
+          key={item.key}
+          icon={this.renderIcon(item.icon)}
+          selectedIcon={this.renderIcon(item.selectedIcon)}
+          selected={this.state.selectedTab === item.key}
+          badge={0}
+          onPress={() => {
+            this.setState({
+              selectedTab: item.key,
+            });
+            if(this.props.onTabarSelect){
+              this.props.onTabarSelect(item)
+            }
+            
+          }}
+        >
+        </TabBar.Item>
+      ))
+    }
+    return contnet;
+  }
   render() {
     return (
       <div>
       	<TabBar>
-	      	<TabBar.Item
-	            title="书籍"
-	            key="book"
-	            icon={this.renderItem("#icon-books")}
-	            selectedIcon={this.renderItem("#icon-books-select")}
-	            selected={this.state.selectedTab === 'book'}
-	            badge={0}
-	            onPress={() => {
-	              this.setState({
-	                selectedTab: 'book',
-	              });
-	            }}
-	          >
-	          </TabBar.Item>
-	          	<TabBar.Item
-	            title="统计"
-	            key="pie"
-              icon={this.renderItem("#icon-piechart")}
-              selectedIcon={this.renderItem("#icon-piechart-select")}
-	            selected={this.state.selectedTab === 'booka'}
-	            badge={0}
-	            onPress={() => {
-	              this.setState({
-	                selectedTab: 'booka',
-	              });
-	            }}
-	          >
-	          </TabBar.Item>
+          {this.renderItem()}
       	</TabBar>
       </div>
     );
