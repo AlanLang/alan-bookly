@@ -12,6 +12,13 @@ class ComTabar extends Component {
       fullScreen: false,
     };
   }
+  renderItem(code){
+    return(
+      <svg style={{width:"2em",height:"2em"}} aria-hidden="true">
+        <use xlinkHref={code}></use>
+      </svg> 
+    )
+  }
   render() {
     return (
       <div>
@@ -19,10 +26,8 @@ class ComTabar extends Component {
 	      	<TabBar.Item
 	            title="书籍"
 	            key="book"
-	            icon={<FontAwesomeIcon style={{fontSize:20}} className={style.icon} icon="book"/>
-	            }
-	            selectedIcon={<FontAwesomeIcon style={{fontSize:20}} icon="book"/>
-	            }
+	            icon={this.renderItem("#icon-books")}
+	            selectedIcon={this.renderItem("#icon-books-select")}
 	            selected={this.state.selectedTab === 'book'}
 	            badge={0}
 	            onPress={() => {
@@ -35,10 +40,8 @@ class ComTabar extends Component {
 	          	<TabBar.Item
 	            title="统计"
 	            key="pie"
-	            icon={<FontAwesomeIcon style={{fontSize:20}} className={style.icon} icon="book"/>
-	            }
-	            selectedIcon={<FontAwesomeIcon style={{fontSize:20}} icon="book"/>
-	            }
+              icon={this.renderItem("#icon-piechart")}
+              selectedIcon={this.renderItem("#icon-piechart-select")}
 	            selected={this.state.selectedTab === 'booka'}
 	            badge={0}
 	            onPress={() => {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Popover, NavBar, Icon } from 'antd-mobile'
 import style from './ComTitle.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Item = Popover.Item;
 
 class ComTitle extends Component {
@@ -23,7 +22,13 @@ class ComTitle extends Component {
       return contnet;
     }
     for(let item of this.props.menu){
-      contnet.push((<Item key={item.key} value="scan"> <FontAwesomeIcon icon="plus" className={style.itemIcon} /> <span className={style.itemText}>添加书籍</span></Item>))
+      contnet.push((
+        <Item key={item.key} value="scan">        
+        <svg className = {style.itemIcon} aria-hidden="true">
+          <use xlinkHref={item.icon}></use>
+        </svg> 
+        <span className={style.itemText}>添加书籍</span>
+        </Item>))
     }
     return contnet;
   }
