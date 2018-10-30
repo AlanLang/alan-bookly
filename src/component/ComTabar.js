@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import style from './ComTitle.css'
+import style from './ComTabar.css'
 
 import { TabBar } from 'antd-mobile';
 class ComTabar extends Component {
@@ -55,7 +55,7 @@ class ComTabar extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={style.comtabar}>
       	<TabBar>
           {this.renderItem()}
       	</TabBar>
