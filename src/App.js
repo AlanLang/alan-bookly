@@ -18,9 +18,9 @@ class App extends Component {
       <Router>
         <div className={styles.App}>
           <Switch>
-            <Route path="/page" component={LayoutTab}/>
+            <Route path="/" component={LayoutTab}/>
             <Route path="/add" component={BooksAdd}/>
-            <Redirect path="/" to={{pathname: '/page'}} />
+            <Redirect path="" to={{pathname: '/book'}} />
           </Switch>
         </div>
       </Router>

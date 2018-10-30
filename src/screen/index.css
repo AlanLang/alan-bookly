@@ -1,0 +1,10 @@
+.bookGroup{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  margin: 12px;
+}
+
+.bookGroup div{
+  flex:0 0 33.33%;
+  text-align: center;
+}

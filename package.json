@@ -2,6 +2,7 @@
   "name": "create-react-app",
   "version": "2.0.0",
   "private": true,
+  "homepage":".",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.7",
     "@fortawesome/free-solid-svg-icons": "^5.4.2",

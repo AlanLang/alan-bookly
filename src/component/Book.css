@@ -1,0 +1,21 @@
+.group{
+
+}
+.book{
+    /*background: url(https://img3.doubanio.com/view/subject/l/public/s28889106.jpg) no-repeat;*/
+    background-color: red;
+    height: 150px;
+    background-size: cover;
+}
+.bookImg{
+  border-radius: 3px;
+  box-shadow: #888888;
+  -webkit-box-shadow: 0px 3px 3px #c8c8c8;
+  -moz-box-shadow: 0px 3px 3px #c8c8c8;
+  box-shadow: 0px 3px 3px #c8c8c8;
+}
+.bookName{
+  overflow:hidden;
+  text-align:left !important;
+  padding-left: 5px;
+}
