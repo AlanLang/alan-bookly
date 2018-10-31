@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import styles from './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faBook,faPlus } from '@fortawesome/free-solid-svg-icons'
 import LayoutTab from './layout/LayoutTab'
@@ -15,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className={styles.App}>
+        <div>
           <Switch>
             <Route path="/tab" component={LayoutTab}/>
             <Route path="/add" component={BooksAdd}/>

@@ -1,5 +1,5 @@
 import { Toast } from 'antd-mobile';
-const base_url = "https://easy-mock.com/mock/5bc4607dd5f74d6b116e93d8/"
+const base_url = "http://langwenda.com:7000/mock/31/api/"
 const codeMessage={
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -22,7 +22,7 @@ const checkStatus = response=>{
     return response;
   }
   const errortext = codeMessage[response.status] || response.statusText;
-  message.fail(`请求错误：${errortext}`,1);
+  Toast.fail(`请求错误：${errortext}`,1);
   const error = new Error(errortext);
   error.name = response.status;
   error.response = response;
@@ -42,12 +42,13 @@ const request = (url: string, config: any) => {
       if(re.code === 0){
         return re.data
       }else{
-        if(re.message){
-          message.fail(re.message,1)
+        if(re.error){
+          Toast.fail(re.error,1)
+          return re
         }else{
-          message.fail("接口访问错误",1)
+          Toast.fail("接口访问错误",1)
+          throw re
         }
-        return re
       }
     });
     return res;

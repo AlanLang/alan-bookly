@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ComTitle from '../component/ComTitle'
 import Book from '../component/Book'
 import style from './index.css'
+import BookModel from '../models/BookModel'
+
 class Books extends Component {
   constructor () {
     super()
@@ -11,17 +13,15 @@ class Books extends Component {
         icon:'#icon-plus',
         text:'添加书籍'
       }],
-      books:[{
-        title:'软技能',
-        img:'http://oqdzx28cd.bkt.clouddn.com/18-10-30/93168232.jpg'
-      },{
-        title:'怪诞行为学',
-        img:'http://oqdzx28cd.bkt.clouddn.com/18-10-30/7339718.jpg'
-      },{
-        title:'穷爸爸富爸爸',
-        img:'http://oqdzx28cd.bkt.clouddn.com/18-10-30/91733172.jpg'
-      }]
+      books:null
     };
+  }
+  componentWillMount(){
+    BookModel.getBooks().then(re=>{
+      this.setState({
+        books:re.list
+      })
+    })
   }
   handleMenuClick(re){
     if("book" === re.key){
@@ -30,6 +30,9 @@ class Books extends Component {
   }
   renderBook(){
     let books = [];
+    if(!this.state.books){
+      return null
+    }
     for (let book of this.state.books){
       books.push((
         <Book key={book.title} book={book}></Book>
