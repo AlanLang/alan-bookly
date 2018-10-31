@@ -36,8 +36,8 @@ class Books extends Component {
       return null
     }
     for (let book of this.state.books){
-      books.width = width
-      books.height = height
+      book.width = width
+      book.height = height
       books.push((
         <Book key={book.title} book={book}></Book>
       ))
