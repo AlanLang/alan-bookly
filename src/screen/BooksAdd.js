@@ -18,7 +18,7 @@ class BooksAdd extends Component {
       <div>
       	<ComTitle type="left" onLeftClick={this.onLeftClick.bind(this)}>书籍添加</ComTitle>
         <div className={style.bookAddGroup}>
-          <ImgUpload></ImgUpload>
+          <ImgUpload width={width} height={height}></ImgUpload>
           <div className={style.bookContent}>
 
           </div>
