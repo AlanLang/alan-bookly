@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Books from '../screen/Books'
 import Report from '../screen/Report'
 import ComTabar from '../component/ComTabar'
-import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
+import {Route,Redirect,Switch} from 'react-router-dom';
 
 class LayoutTab extends Component {
   constructor () {
