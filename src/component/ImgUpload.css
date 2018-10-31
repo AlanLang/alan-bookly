@@ -1,0 +1,18 @@
+.bookImg{
+  background-color: #e8e8e8;
+  text-align: center;
+  border-radius: 3px;
+}
+.bookImg svg{
+  width:3em;
+  height:3em;
+  vertical-align: middle;
+}
+.upButton{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+}
