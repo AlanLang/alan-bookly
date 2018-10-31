@@ -10,11 +10,11 @@ if (isIPhone) {
 }
 const ImgUpload =({width,height}) => {
   return (
-    <div style={{width:width,height:height,lineHeight:height}} className={style.bookImg}>
+    <div style={{width:width,height:height}} className={style.bookImg}>
+      <input style={{width:width,height:height}} className={style.upButton} type="file" accept="image/*"/>
       <svg aria-hidden="true">
         <use xlinkHref="#icon-camera"></use>
       </svg> 
-      <input className={style.upButton} type="file" accept="image/*"/>
     </div>
   );
 }

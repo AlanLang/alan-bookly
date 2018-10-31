@@ -2,17 +2,20 @@
   background-color: #e8e8e8;
   text-align: center;
   border-radius: 3px;
+  position: relative;
 }
 .bookImg svg{
   width:3em;
   height:3em;
-  vertical-align: middle;
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
 }
 .upButton{
+  position: sticky;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
   opacity: 0;
 }

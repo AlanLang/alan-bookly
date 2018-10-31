@@ -29,11 +29,15 @@ class Books extends Component {
     }
   }
   renderBook(){
+    const width = document.documentElement.clientWidth/3 - 15;
+    const height = width * 1.35
     let books = [];
     if(!this.state.books){
       return null
     }
     for (let book of this.state.books){
+      books.width = width
+      books.height = height
       books.push((
         <Book key={book.title} book={book}></Book>
       ))
