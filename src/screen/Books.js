@@ -31,6 +31,9 @@ class Books extends Component {
       this.props.history.push('/add')
     }
   }
+  handelBookClick(re){
+    console.log(re)
+  }
   renderBook(){
     const width = document.documentElement.clientWidth/3 - 15;
     const height = width * 1.35
@@ -42,7 +45,7 @@ class Books extends Component {
       book.width = width
       book.height = height
       books.push((
-        <Book key={book.title} book={book}></Book>
+        <Book onBookClick={this.handelBookClick.bind(this)} key={book.title} book={book}></Book>
       ))
     }
     return books;
