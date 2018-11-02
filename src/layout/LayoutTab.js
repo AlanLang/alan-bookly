@@ -24,7 +24,6 @@ class LayoutTab extends Component {
     };
   }
   handleTabarSelect(item){
-    console.log(item)
     if(item.key === 'book'){
       this.props.history.push('/tab/book')
     }
