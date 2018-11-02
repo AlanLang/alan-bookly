@@ -4,6 +4,8 @@ import { faBook,faPlus } from '@fortawesome/free-solid-svg-icons'
 import LayoutTab from './layout/LayoutTab'
 import BooksAdd from './screen/BooksAdd'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
+import { AnimatedSwitch } from 'react-router-transition';
+import style from  './index.css';
 
 library.add(faBook,faPlus)
 
@@ -15,11 +17,16 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Switch>
+          <AnimatedSwitch
+            atEnter={{ opacity: 0,left:200 }}
+            atLeave={{ opacity: 0 }}
+            atActive={{ opacity: 1 }}
+            className={style.switchWrapper}
+            >
             <Route path="/tab" component={LayoutTab}/>
             <Route path="/add" component={BooksAdd}/>
             <Redirect path="" to={{pathname: '/tab'}} />
-          </Switch>
+          </AnimatedSwitch>
         </div>
       </Router>
     );
