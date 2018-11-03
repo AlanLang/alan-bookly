@@ -11,7 +11,7 @@ class ReadLog extends Component {
         <div className={style.readLogMsg}>
           <div>
             <div>阅读页数</div>
-            <div>{this.props.readNum}</div>
+            <div>{this.props.readNum}页</div>
           </div>
           <div>
             <div>阅读时间</div>

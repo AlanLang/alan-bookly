@@ -1,5 +1,5 @@
 import { Toast } from 'antd-mobile';
-const base_url = ""
+const base_url = "http://langwenda.com:7001/api/"
 const codeMessage={
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',

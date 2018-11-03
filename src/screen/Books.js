@@ -32,7 +32,6 @@ class Books extends Component {
     }
   }
   handelBookClick(re){
-    console.log(re._id)
     this.props.history.push(`/read/${re._id}`)
   }
   renderBook(){

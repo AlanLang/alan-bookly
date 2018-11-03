@@ -5,6 +5,7 @@ import style from './index.css'
 import ComTitle from '../component/ComTitle'
 import { Button, WhiteSpace,WingBlank,Modal } from 'antd-mobile';
 import ReadLog from '../component/ReadLog'
+import timeInterval from '../utils/timeInterval'
 const {alert,prompt} = Modal;
 
 class BookRead extends Component {
@@ -12,6 +13,7 @@ class BookRead extends Component {
     super()
     this.state = {
       book:{},
+      readTime:'...',
       readLog:{
         coutn:0,
         type:0,
@@ -35,6 +37,9 @@ class BookRead extends Component {
       this.setState({
         readLog:re
       })
+      if(this.state.readLog.type == 1){
+        this.getReadTime();
+      }
     })
   }
   loadReadLog(){
@@ -47,6 +52,17 @@ class BookRead extends Component {
   handleLeftClick(){
     this.props.history.goBack()
   }
+  getReadTime(){
+    this.timerID = setInterval(
+    () => {
+      let start = Date.parse(this.state.readLog.log.startTime);
+      let now = new Date()
+      let tiemArea = timeInterval((now.getTime() - start)/1000)
+      this.setState({
+        readTime:`(${tiemArea})`
+      })
+    },1000);
+  }
   beginRead(){
     BookModel.beginRead(this.props.match.params.id).then(re=>{
       this.setState({
@@ -55,6 +71,7 @@ class BookRead extends Component {
         }
       })
       this.loadBookReadLogStatus()
+      this.getReadTime()
     })
   }
   stopRead(value){
@@ -66,6 +83,7 @@ class BookRead extends Component {
       })
       this.loadBookReadLogStatus()
       this.loadReadLog()
+      clearInterval(this.timerID);
     })
   }
   handleStopButtonClick(){
@@ -91,7 +109,7 @@ class BookRead extends Component {
   renderLog(){
     let logs = [];
     for(let log of this.state.log){
-      logs.push(<div><ReadLog title="2018年11月3日" readNum={log.readNumber} readTime={log.timeArea}></ReadLog><WhiteSpace /></div>)
+      logs.push(<div key={log._id}><ReadLog  title="2018年11月3日" readNum={log.readNumber} readTime={timeInterval(log.timeArea)}></ReadLog><WhiteSpace /></div>)
     }
     return logs
   }
@@ -124,7 +142,7 @@ class BookRead extends Component {
             this.state.readLog.type == 0?
             <Button onClick={this.handleBeginButtonClick.bind(this)} size="small" type="primary">开始阅读</Button>
             :
-            <Button onClick={this.handleStopButtonClick.bind(this)} size="small" type="warning">停止阅读</Button>
+            <Button onClick={this.handleStopButtonClick.bind(this)} size="small" type="warning">停止阅读{this.state.readTime}</Button>
           }
         </WingBlank>
         <WhiteSpace />
