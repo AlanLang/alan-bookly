@@ -12,7 +12,7 @@ class Book extends Component {
     const book = this.props.book
     return (
       <div>
-        <div onClick={this.props.onBookClick.bind(this,this.props.book)} >
+        <div onClick={this.props.onBookClick?this.props.onBookClick.bind(this,this.props.book):''} >
           <img src={book.img} style={{width:book.width,height:book.height}} className={style.bookImg}/>
         </div>
         {

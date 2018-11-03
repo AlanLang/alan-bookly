@@ -17,3 +17,18 @@
   -moz-box-shadow: 0px 1px 1px #c8c8c8;
   box-shadow: 0px 1px 1px #c8c8c8;
 }
+.bookContent{
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+
+}
+.bookTitle{
+  font-size: 18px;
+}
+.bookMessage{
+  font-size: 12px;
+  line-height: 18px;
+  color: #66666cc7;
+}

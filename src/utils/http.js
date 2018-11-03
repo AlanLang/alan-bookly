@@ -1,5 +1,5 @@
 import { Toast } from 'antd-mobile';
-const base_url = "http://langwenda.com:7001/api/"
+const base_url = ""
 const codeMessage={
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
@@ -26,16 +26,20 @@ const checkStatus = response=>{
   throw `请求错误：${errortext}`;
 }
 const request = (url: string, config: any) => {
+  const loading = Toast.loading('正在获取')
   url = base_url + url
-  let headers = {
-    'content-type': 'application/json'
-  }
-  let request = {...config,...headers}
+  let headers = {headers:{
+    'X-Requested-With': 'XMLHttpRequest',
+    "Accept": "application/json",
+    "Content-Type": "application/json; charset=UTF-8"
+  }}
 
+  let request = {...config,...headers}
   return fetch(url, request)
   .then(checkStatus)
   .then(response => {
     let res = response.json().then(re=>{
+      Toast.hide(loading)
       if(re.code === 0){
         return re.data
       }else{
@@ -78,7 +82,7 @@ const http = {
       method: 'POST'
     });
   },
-  put:(url:string,data:ang) => {
+  put:(url:string,data:Object) => {
     return request(url, {
       body: JSON.stringify(data),
       method: 'PUT'
