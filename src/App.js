@@ -5,7 +5,7 @@ import LayoutTab from './layout/LayoutTab'
 import BooksAdd from './screen/BooksAdd'
 import BookRead from './screen/BookRead'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
-import { spring,AnimatedSwitch,AnimatedRoute } from 'react-router-transition';
+import { spring, AnimatedSwitch } from 'react-router-transition';
 import style from  './index.css';
 
 library.add(faBook,faPlus)
@@ -37,6 +37,8 @@ class App extends Component {
 }
 
 export default App;
+// we need to map the `scale` prop we define below
+// to the transform style property
 function mapStyles(styles) {
   return {
     opacity: styles.opacity,

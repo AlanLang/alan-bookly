@@ -3,23 +3,26 @@ import BookModel from '../models/BookModel'
 import Book from '../component/Book'
 import style from './index.css'
 import ComTitle from '../component/ComTitle'
-import { Button, WhiteSpace,WingBlank,Modal } from 'antd-mobile';
+import { Button, WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
 import ReadLog from '../component/ReadLog'
 import timeInterval from '../utils/timeInterval'
+import QueueAnim from 'rc-queue-anim';
+import TweenOne from 'rc-tween-one';
+
 const {alert,prompt} = Modal;
 
 class BookRead extends Component {
   constructor () {
     super()
     this.state = {
-      book:{},
-      readTime:'...',
+      book:{},// 书籍信息
+      readTime:'...',//已阅读时间
       readLog:{
         coutn:0,
-        type:0,
-        log:{}
+        type:0,// 0 未阅读中，1已阅读中
+        log:{}// 最后一条阅读信息
       },
-      log:[]
+      log:[]// 所有阅读记录
     }
   }
   componentWillMount(){
@@ -37,9 +40,7 @@ class BookRead extends Component {
       this.setState({
         readLog:re
       })
-      if(this.state.readLog.type == 1){
-        this.getReadTime();
-      }
+      this.getReadTime();
     })
   }
   loadReadLog(){
@@ -55,9 +56,14 @@ class BookRead extends Component {
   getReadTime(){
     this.timerID = setInterval(
     () => {
-      let start = Date.parse(this.state.readLog.log.startTime);
-      let now = new Date()
-      let tiemArea = timeInterval((now.getTime() - start)/1000)
+      let tiemArea = "";
+      if(!this.state.readLog.log.startTime){
+        tiemArea = "未阅读"
+      }else{
+        let start = Date.parse(this.state.readLog.log.startTime);
+        let now = new Date()
+        tiemArea = timeInterval((now.getTime() - start)/1000)
+      }
       this.setState({
         readTime:`(${tiemArea})`
       })
@@ -71,28 +77,30 @@ class BookRead extends Component {
         }
       })
       this.loadBookReadLogStatus()
-      this.getReadTime()
     })
   }
-  stopRead(value){
+  stopRead(value,cb){
     BookModel.stopRead(this.state.readLog.log._id,value).then(re=>{
-      this.setState({
-        readLog:{
-          type:0
-        }
-      })
       this.loadBookReadLogStatus()
       this.loadReadLog()
       clearInterval(this.timerID);
+      cb()
     })
   }
   handleStopButtonClick(){
     prompt('提醒', '是否完成本次阅读？',[{text: '算了'},
       {
         text: '提交',
-        onPress: value => {
-          this.stopRead(value)
-        }
+        onPress: value => new Promise((resolve, reject)=>{
+          if(this.state.readLog.num >= value){
+            Toast.info(`页码数必须大于${this.state.readLog.num}`, 1);
+            setTimeout(() => {
+              reject();
+            }, 1000);
+          }else{
+            this.stopRead(value - this.state.readLog.num,()=>resolve())
+          }
+        })
       },
     ], 'default', null, ['请输入页码数'])
   }
@@ -124,18 +132,25 @@ class BookRead extends Component {
     return (
       <div>
         <ComTitle type="left" onLeftClick={this.handleLeftClick.bind(this)}>读书记录</ComTitle>
-        <div className={style.bookAddGroup}>
-           <Book key={this.state.book.title} book={book}></Book>
-           <div className={style.bookContent}>
-             <div className={style.bookTitle}>{this.state.book.title}</div>
-             <div className={style.bookMessage}>
-               <div>出版社：{this.state.book.press}</div>
-               <div>作者：{this.state.book.author}</div>
-               <div>阅读进度：{this.state.readLog.num}/{this.state.book.pageNumber}</div>
-               <div>阅读时长：{this.state.readLog.count}</div>
+        <TweenOne
+          animation={[
+          { scale: 0.9 },
+          { scale: 1 },
+          ]}
+        >
+          <div className={style.bookAddGroup}>
+             <Book key={this.state.book.title} book={book}></Book>
+             <div className={style.bookContent}>
+               <div className={style.bookTitle}>{this.state.book.title}</div>
+               <div className={style.bookMessage}>
+                 <div>出版社：{this.state.book.press}</div>
+                 <div>作者：{this.state.book.author}</div>
+                 <div>阅读进度：{this.state.readLog.num}/{this.state.book.pageNumber}</div>
+                 <div>阅读时长：{timeInterval(this.state.readLog.count)}</div>
+               </div>
              </div>
-           </div>
-        </div>
+          </div>
+        </TweenOne>
         <WingBlank>
           <WhiteSpace />
           {
@@ -148,10 +163,16 @@ class BookRead extends Component {
         <WhiteSpace />
 
         <WingBlank size="md">
-          {this.renderLog()}
+          <QueueAnim>
+            {this.renderLog()}
+          </QueueAnim>
         </WingBlank>
       </div>
     );
+  }
+  // 组件销毁之前关闭定时器
+  componentWillUnmount(){
+    clearInterval(this.timerID);
   }
 }
 

@@ -32,7 +32,11 @@ class Books extends Component {
     }
   }
   handelBookClick(re){
-    this.props.history.push(`/read/${re._id}`)
+    if(re._id === "addBook"){
+      this.props.history.push('/add')
+    }else{
+      this.props.history.push(`/read/${re._id}`)
+    }
   }
   renderBook(){
     const width = document.documentElement.clientWidth/3 - 15;
@@ -51,10 +55,20 @@ class Books extends Component {
     return books;
   }
   render() {
+    const width = document.documentElement.clientWidth/3 - 15;
+    const height = width * 1.35
     return (
       <div>
         <ComTitle type="none" menu={this.state.menu} onSelect={this.handleMenuClick.bind(this)}>达达阅读</ComTitle>
         <div className={style.bookGroup}>
+          <Book onBookClick={this.handelBookClick.bind(this)} key="add" 
+            book={
+              {img:'http://pggtd27e8.bkt.clouddn.com/add.png',
+              _id:'addBook',
+              width:width,
+              height:height}
+            }
+          ></Book>
           {this.renderBook()}
         </div>
       </div>

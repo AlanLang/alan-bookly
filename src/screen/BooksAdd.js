@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ComTitle from '../component/ComTitle'
 import ImgUpload from '../component/ImgUpload'
 import style from './index.css'
+import ami from  "./Container.css";
+import TweenOne from 'rc-tween-one';
 
 class BooksAdd extends Component {
   constructor () {
@@ -9,6 +11,8 @@ class BooksAdd extends Component {
   }
   onLeftClick(){
     this.props.history.goBack()
+  }
+  componentWillMount() {
   }
   render() {
     const width = document.documentElement.clientWidth/3 - 15;
@@ -20,7 +24,7 @@ class BooksAdd extends Component {
         <div className={style.bookAddGroup}>
           <ImgUpload width={width} height={height}></ImgUpload>
           <div className={style.bookContent}>
-
+          <TweenOne animation={{ x:100 }} >123</TweenOne>
           </div>
         </div>
       </div>
