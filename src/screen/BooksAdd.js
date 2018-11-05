@@ -24,7 +24,10 @@ class BooksAdd extends Component {
         <div className={style.bookAddGroup}>
           <ImgUpload width={width} height={height}></ImgUpload>
           <div className={style.bookContent}>
-          <TweenOne animation={{ x:100 }} >123</TweenOne>
+              <input class="login-input" type="text" placeholder="书籍名称" name=""/>
+              <input class="login-input" type="text" placeholder="出版社" name=""/>
+              <input class="login-input" type="text" placeholder="作者" name=""/>
+              <input class="login-input" type="text" placeholder="页码数" name=""/>
           </div>
         </div>
       </div>

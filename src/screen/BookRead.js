@@ -163,6 +163,7 @@ class BookRead extends Component {
         <WhiteSpace />
 
         <WingBlank size="md">
+          <WhiteSpace />
           <QueueAnim>
             {this.renderLog()}
           </QueueAnim>
