@@ -57,7 +57,7 @@ class BookRead extends Component {
     this.timerID = setInterval(
     () => {
       let tiemArea = "";
-      if(!this.state.readLog.log.startTime){
+      if(!this.state.readLog.log || !this.state.readLog.log.startTime){
         tiemArea = "未阅读"
       }else{
         let start = Date.parse(this.state.readLog.log.startTime);

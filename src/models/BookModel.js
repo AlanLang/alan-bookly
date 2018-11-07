@@ -8,6 +8,10 @@ class BookModel {
     return http.get(`book/${id}`)
   }
 
+  addBook(book){
+    return http.post('book',book)
+  }
+
   getReadStatus(bookId){
     return http.get(`readlog/status/${bookId}`)
   }
@@ -21,6 +25,10 @@ class BookModel {
 
   getReadLog(bookId){
     return http.get(`readlog/log/${bookId}`)
+  }
+
+  uploadBookImg(file){
+    return http.upload('upload',file)
   }
 }
 

@@ -2,6 +2,7 @@
   display: -webkit-flex; /* Safari */
   display: flex;
   margin: 12px;
+  flex-wrap: wrap;
 }
 
 .bookGroup div{

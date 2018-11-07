@@ -31,9 +31,13 @@ const request = (url: string, config: any) => {
   let headers = {headers:{
     'X-Requested-With': 'XMLHttpRequest',
     "Accept": "application/json",
-    "Content-Type": "application/json; charset=UTF-8"
+    "Content-Type": "application/json; charset=UTF-8",
   }}
-
+  if(config.method === 'UPLOAD'){
+    config.method = "POST"
+    headers = {headers:{
+    }}
+  }
   let request = {...config,...headers}
   return fetch(url, request)
   .then(checkStatus)
@@ -101,6 +105,12 @@ const http = {
     }
     return request(url, {
       method: 'DELETE'
+    });
+  },
+  upload(url,file){
+    return request(url, {
+      method :"UPLOAD",
+      body: file
     });
   }
 }

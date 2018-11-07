@@ -24,6 +24,7 @@ class Books extends Component {
       this.setState({
         books:re.list
       })
+      console.log(re)
     })
   }
   handleMenuClick(re){
@@ -49,7 +50,7 @@ class Books extends Component {
       book.width = width
       book.height = height
       books.push((
-        <Book onBookClick={this.handelBookClick.bind(this)} key={book.title} book={book}></Book>
+        <Book onBookClick={this.handelBookClick.bind(this)} key={book._id} book={book}></Book>
       ))
     }
     return books;
