@@ -36,7 +36,7 @@ class ComTabar extends Component {
           icon={this.renderIcon(item.icon)}
           selectedIcon={this.renderIcon(item.selectedIcon)}
           selected={this.state.selectedTab === item.key}
-          badge={0}
+          badge={item.badge}
           onPress={() => {
             this.setState({
               selectedTab: item.key,

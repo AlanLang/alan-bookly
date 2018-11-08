@@ -20,7 +20,7 @@ class LayoutTab extends Component {
         icon:'#icon-piechart',
         selectedIcon:'#icon-piechart-select',
         text:'统计',
-        badge:3
+        badge:0
       },{
         key:'me',
         icon:'#icon-user',
