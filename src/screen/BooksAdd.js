@@ -4,7 +4,6 @@ import { Button, WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
 import ComTitle from '../component/ComTitle'
 import ImgUpload from '../component/ImgUpload'
 import style from './index.css'
-import ami from  "./Container.css";
 import TweenOne from 'rc-tween-one';
 import BookModel from '../models/BookModel'
 
