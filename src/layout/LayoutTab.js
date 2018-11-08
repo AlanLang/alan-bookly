@@ -25,7 +25,7 @@ class LayoutTab extends Component {
         key:'me',
         icon:'#icon-user',
         selectedIcon:'#icon-user-select',
-        text:'我',
+        text:'我的',
         badge:0
       }]
     };
