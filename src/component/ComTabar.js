@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import style from './ComTabar.css'
 
 import { TabBar } from 'antd-mobile';
