@@ -54,10 +54,10 @@ class BooksAdd extends Component {
         <div className={style.bookAddGroup}>
           <ImgUpload src={this.state.img} width={width} height={height} onChange={this.handleChange.bind(this)}></ImgUpload>
           <div className={style.bookContent}>
-            <input className="login-input" onChange={e=>this.setState({title:e.target.value})} type="text" placeholder="书籍名称" name=""/>
-            <input className="login-input" onChange={e=>this.setState({press:e.target.value})} type="text" placeholder="出版社" name=""/>
-            <input className="login-input" onChange={e=>this.setState({author:e.target.value})} type="text" placeholder="作者" name=""/>
-            <input className="login-input" onChange={e=>this.setState({pageNumber:e.target.value})} type="text" placeholder="页码数" name=""/>
+            <input onChange={e=>this.setState({title:e.target.value})} type="text" placeholder="书籍名称" name=""/>
+            <input onChange={e=>this.setState({press:e.target.value})} type="text" placeholder="出版社" name=""/>
+            <input onChange={e=>this.setState({author:e.target.value})} type="text" placeholder="作者" name=""/>
+            <input onChange={e=>this.setState({pageNumber:e.target.value})} type="text" placeholder="页码数" name=""/>
           </div>
         </div>
         <WingBlank>

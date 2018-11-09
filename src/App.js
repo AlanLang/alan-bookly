@@ -4,6 +4,7 @@ import { faBook,faPlus } from '@fortawesome/free-solid-svg-icons'
 import LayoutTab from './layout/LayoutTab'
 import BooksAdd from './screen/BooksAdd'
 import BookRead from './screen/BookRead'
+import Login from './screen/Login/Login'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import style from  './index.css';
@@ -28,6 +29,7 @@ class App extends Component {
             <Route path="/tab" component={LayoutTab}/>
             <Route path="/add" component={BooksAdd}/>
             <Route path="/read/:id" component={BookRead}/>
+            <Route path="/login" component={Login} />
             <Redirect path="" to={{pathname: '/tab'}} />
           </AnimatedSwitch>
         </div>
