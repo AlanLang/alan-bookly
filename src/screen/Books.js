@@ -24,7 +24,6 @@ class Books extends Component {
       this.setState({
         books:re.list
       })
-      console.log(re)
     })
   }
   handleMenuClick(re){
