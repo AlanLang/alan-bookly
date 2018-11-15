@@ -7,8 +7,9 @@ import BookRead from './screen/BookRead'
 import Login from './screen/Login/Login'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
+import withHocPrivateRoute from './containers/withHocPrivateRoute'
 import style from  './index.css';
-
+const  PrivateRoute =  withHocPrivateRoute(Route);
 library.add(faBook,faPlus)
 
 class App extends Component {
@@ -26,9 +27,9 @@ class App extends Component {
             mapStyles={mapStyles}
             className={style.switchWrapper}
             >
-            <Route path="/tab" component={LayoutTab}/>
-            <Route path="/add" component={BooksAdd}/>
-            <Route path="/read/:id" component={BookRead}/>
+            <PrivateRoute path="/tab" component={LayoutTab}/>
+            <PrivateRoute path="/add" component={BooksAdd}/>
+            <PrivateRoute path="/read/:id" component={BookRead}/>
             <Route path="/login" component={Login} />
             <Redirect path="" to={{pathname: '/tab'}} />
           </AnimatedSwitch>

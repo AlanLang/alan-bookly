@@ -22,7 +22,8 @@ class Login extends Component {
       return
     }
     sysModel.login(userName,password).then(re=>{
-      console.log(re)
+      // 登录成功，跳转到首页
+      this.props.history.push('/tab/book')
     })
   }
   render() {
@@ -33,9 +34,11 @@ class Login extends Component {
         </div>
         <WhiteSpace size="xl"/>
         <div className={style.loginForm}>
-          <input className={style.loginInput} onChange={e=>this.setState({userName:e.target.value})} type="text" placeholder="用户名" name=""/>
+          <input className={style.loginInput} onChange={e=>this.setState({userName:e.target.value})} 
+          type="text" placeholder="用户名" name=""/>
           <WhiteSpace/>
-          <input className={style.loginInput} onChange={e=>this.setState({password:e.target.value})} type="password" placeholder="密码" name=""/>
+          <input className={style.loginInput} onChange={e=>this.setState({password:e.target.value})} 
+          type="password" placeholder="密码" name=""/>
           <WhiteSpace size="xl"/>
           <WhiteSpace size="xl"/>
           <Button onClick={this.login.bind(this)} type="primary">登录</Button>

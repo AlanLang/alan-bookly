@@ -62,7 +62,7 @@ class BooksAdd extends Component {
         </div>
         <WingBlank>
           <WhiteSpace />
-          <Button onClick={this.handleAddBook.bind(this)} type="primary">添加</Button>
+          <Button onClick={this.handleAddBook.bind(this)} size="small" type="primary">添加</Button>
         </WingBlank>
       </div>
     );
