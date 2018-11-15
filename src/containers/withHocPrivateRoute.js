@@ -11,11 +11,10 @@ function withHocPrivateRoute(WrappedComponent){
     }
     //withRouter 也是一个高阶组件 传递 history
     return withRouter(
-    class extends React.Component{
+      class extends React.Component{
         constructor(props) {
           super(props);
         }
-
         componentWillMount(){
             let  isAuthenticated =  tokenUtil.isLogin() ? true :false;
             this.setState({isAuthenticated:isAuthenticated})
@@ -31,7 +30,7 @@ function withHocPrivateRoute(WrappedComponent){
                 <WrappedComponent {...this.props} />
             ) : null;
         }
-    }
+      }
     )
 }
 export default withHocPrivateRoute;

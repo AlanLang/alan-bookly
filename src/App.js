@@ -7,7 +7,7 @@ import BookRead from './screen/BookRead'
 import Login from './screen/Login/Login'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import withHocPrivateRoute from './containers/withHocPrivateRoute'
+import withHocPrivateRoute from './containers/withHocPrivateRoute';
 import style from  './index.css';
 const  PrivateRoute =  withHocPrivateRoute(Route);
 library.add(faBook,faPlus)
@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <AnimatedSwitch
+          <Switch
             atEnter={bounceTransition.atEnter}
             atLeave={bounceTransition.atLeave}
             atActive={bounceTransition.atActive}
@@ -32,7 +32,7 @@ class App extends Component {
             <PrivateRoute path="/read/:id" component={BookRead}/>
             <Route path="/login" component={Login} />
             <Redirect path="" to={{pathname: '/tab'}} />
-          </AnimatedSwitch>
+          </Switch>
         </div>
       </Router>
     );

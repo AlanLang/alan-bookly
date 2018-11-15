@@ -21,7 +21,7 @@ class TokenUtil {
   }
 
   get(key){
-    window.localStorage.getItem(key)
+    return localStorage.getItem(key)
   }
 
   setToken(authToken,rememberMe = false){
@@ -29,16 +29,16 @@ class TokenUtil {
     let tokenExpireDate = rememberMe ? (new Date(new Date().getTime() + 1000 * 86400)) : undefined;
 
     if (authToken) {
-        window.localStorage.setItem(this.tokenCookieName, authToken)
+        localStorage.setItem(this.tokenCookieName, authToken)
     }
     if (tokenExpireDate) {
-        window.localStorage.setItem('expires', tokenExpireDate.toUTCString())
+        localStorage.setItem('expires', tokenExpireDate.toUTCString())
     }
     if (this.appPath) {
-        window.localStorage.setItem('path', this.appPath)
+        localStorage.setItem('path', this.appPath)
     }
     if (this.domain) {
-        window.localStorage.setItem('domain', this.domain)
+        localStorage.setItem('domain', this.domain)
     }
     document.cookie = cookieValue;
   }
