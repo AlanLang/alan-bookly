@@ -1,4 +1,6 @@
 import { Toast } from 'antd-mobile';
+import tokenUtil from './TokenUtil'
+
 const base_url = "http://langwenda.com:7001/api/"
 const codeMessage={
   200: '服务器成功返回请求的数据。',
@@ -32,6 +34,7 @@ const request = (url: string, config: any) => {
     'X-Requested-With': 'XMLHttpRequest',
     "Accept": "application/json",
     "Content-Type": "application/json; charset=UTF-8",
+    "Authorization":`Bearer ${tokenUtil.getToken()}`
   }}
   if(config.method === 'UPLOAD'){
     config.method = "POST"
