@@ -40,12 +40,11 @@ class TokenUtil {
     if (this.domain) {
         localStorage.setItem('domain', this.domain)
     }
-    document.cookie = cookieValue;
   }
 
     // 清空token
   clearToken(): void {
-    this.setToken(null,null);
+    localStorage.clear();
   }
 }
 
