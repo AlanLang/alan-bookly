@@ -59,7 +59,7 @@ class Books extends Component {
     const height = width * 1.35
     return (
       <div>
-        <ComTitle type="none" menu={this.state.menu} onSelect={this.handleMenuClick.bind(this)}>达达书摘</ComTitle>
+        <ComTitle type="none" menu={this.state.menu} onSelect={this.handleMenuClick.bind(this)}>所有书籍</ComTitle>
         <div className={style.bookGroup}>
           <Book onBookClick={this.handelBookClick.bind(this)} key="add" 
             book={
