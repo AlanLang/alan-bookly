@@ -63,7 +63,7 @@ class Books extends Component {
         <div className={style.bookGroup}>
           <Book onBookClick={this.handelBookClick.bind(this)} key="add" 
             book={
-              {img:'http://pggtd27e8.bkt.clouddn.com/add.png',
+              {img:'http://dada-image-bed.oss-cn-shenzhen.aliyuncs.com/18-11-18/2844711.jpg',
               _id:'addBook',
               width:width,
               height:height}
