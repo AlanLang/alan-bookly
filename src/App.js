@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBook,faPlus } from '@fortawesome/free-solid-svg-icons'
 import LayoutTab from './layout/LayoutTab'
 import BooksAdd from './screen/BooksAdd'
 import BookRead from './screen/BookRead'
@@ -10,7 +8,6 @@ import { spring, AnimatedSwitch } from 'react-router-transition';
 import withHocPrivateRoute from './containers/withHocPrivateRoute';
 import style from  './index.css';
 const  PrivateRoute =  withHocPrivateRoute(Route);
-library.add(faBook,faPlus)
 
 class App extends Component {
   constructor () {
