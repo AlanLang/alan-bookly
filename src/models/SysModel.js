@@ -11,6 +11,10 @@ class SysModel {
       return re
     })
   }
+
+  getCurrent(){
+    return http.get('user/access/current')
+  }
 }
 
 const sysModel = new SysModel()
