@@ -1,7 +1,15 @@
+html{
+  height: 100%;
+}
 body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .icon {
@@ -22,4 +30,7 @@ body {
   height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+#root{
+  height: 100%;
 }
