@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Books from '../screen/Books'
-import Report from '../screen/Report'
+import Report from '../screen/Report/Report'
 import UserSet from '../screen/UserSet/UserSet'
 import ComTabar from '../component/ComTabar'
 import {Route,Redirect,Switch} from 'react-router-dom';
