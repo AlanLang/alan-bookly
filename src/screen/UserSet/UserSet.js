@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ComTitle from '../../component/ComTitle'
-import { Button, Toast, List} from 'antd-mobile';
+import { Button, Toast, List,Modal} from 'antd-mobile';
 import tokenUtil from '../../utils/TokenUtil'
 import sysModel from '../../models/SysModel'
 import style from './UserSet.css'
 const Item = List.Item;
+const {alert} = Modal;
 class UserSet extends Component {
   constructor () {
     super()
@@ -24,12 +25,16 @@ class UserSet extends Component {
       })
     })
   }
-  handleLogin(){
-    this.props.history.push('/login')
-  }
   handleLogout(){
-    tokenUtil.clearToken()
-    this.props.history.push('/login')
+    alert('提醒', '确定要退出吗?', [{ text: '算了'},
+      {
+        text: '退出',
+        onPress:()=>{
+          tokenUtil.clearToken()
+          this.props.history.push('/login')
+        }
+      },
+    ])
   }
 
   render() {
