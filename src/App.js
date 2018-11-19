@@ -13,6 +13,9 @@ class App extends Component {
   constructor () {
     super()
   }
+  componentWillMount(){
+    document.body.removeChild(document.getElementById('app-loading'));
+  }
   render() {
     return (
       <Router>
