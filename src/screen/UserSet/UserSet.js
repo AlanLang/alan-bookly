@@ -3,7 +3,7 @@ import ComTitle from '../../component/ComTitle'
 import { Button, Toast, List,Modal} from 'antd-mobile';
 import tokenUtil from '../../utils/TokenUtil'
 import sysModel from '../../models/SysModel'
-import storage from '../utils/StorageUtil'
+import storage from '../../utils/StorageUtil'
 import style from './UserSet.css'
 const Item = List.Item;
 const {alert} = Modal;
