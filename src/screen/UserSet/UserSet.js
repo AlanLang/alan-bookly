@@ -3,6 +3,7 @@ import ComTitle from '../../component/ComTitle'
 import { Button, Toast, List,Modal} from 'antd-mobile';
 import tokenUtil from '../../utils/TokenUtil'
 import sysModel from '../../models/SysModel'
+import storage from '../utils/StorageUtil'
 import style from './UserSet.css'
 const Item = List.Item;
 const {alert} = Modal;
@@ -16,13 +17,17 @@ class UserSet extends Component {
     }
   }
   componentWillMount(){
-    Toast.loading('正在获取')
+    let user = storage.get('user')
+    if(user){
+      this.setState({
+        user:JSON.parse(user)
+      })
+    }
     sysModel.getCurrent().then(re=>{
-      Toast.hide()
-      console.log(re)
       this.setState({
         user:re
       })
+      storage.set("user",JSON.stringify(re))
     })
   }
   handleLogout(){
