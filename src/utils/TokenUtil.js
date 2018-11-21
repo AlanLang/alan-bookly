@@ -25,7 +25,6 @@ class TokenUtil {
   }
 
   setToken(authToken,rememberMe = false){
-    let cookieValue = encodeURIComponent(this.tokenCookieName) + '=';
     let tokenExpireDate = rememberMe ? (new Date(new Date().getTime() + 1000 * 86400)) : undefined;
 
     if (authToken) {
@@ -33,12 +32,6 @@ class TokenUtil {
     }
     if (tokenExpireDate) {
         localStorage.setItem('expires', tokenExpireDate.toUTCString())
-    }
-    if (this.appPath) {
-        localStorage.setItem('path', this.appPath)
-    }
-    if (this.domain) {
-        localStorage.setItem('domain', this.domain)
     }
   }
 

@@ -4,6 +4,7 @@ import Book from '../component/Book'
 import style from './index.css'
 import BookModel from '../models/BookModel'
 import { Toast } from 'antd-mobile';
+import storage from '../utils/StorageUtil'
 
 class Books extends Component {
   constructor () {
@@ -18,12 +19,17 @@ class Books extends Component {
     };
   }
   componentWillMount(){
-    Toast.loading('正在获取')
+    let books = storage.get('books')
+    if(books){
+      this.setState({
+        books:JSON.parse(books)
+      })
+    }
     BookModel.getBooks().then(re=>{
-      Toast.hide()
       this.setState({
         books:re.list
       })
+      storage.set("books",JSON.stringify(re.list))
     })
   }
   handleMenuClick(re){
