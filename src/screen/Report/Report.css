@@ -23,3 +23,13 @@
   color: #f0f3f9;
   font-size: 18px;
 }
+.week{
+  margin:12px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 12px;
+}
+.weekReport{
+  height: 200px;
+  width: 100%;
+}

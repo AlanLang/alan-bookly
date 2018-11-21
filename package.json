@@ -2,8 +2,9 @@
   "name": "create-react-app",
   "version": "2.0.0",
   "private": true,
-  "homepage": "",
+  "homepage": ".",
   "dependencies": {
+    "@antv/f2": "^3.3.0",
     "antd-mobile": "^2.2.6",
     "rc-queue-anim": "^1.6.7",
     "rc-tween-one": "^2.2.17",
