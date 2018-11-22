@@ -56,7 +56,7 @@ class Report extends Component {
     const chart = new F2.Chart({
       id: 'weekNode',
       pixelRatio: window.devicePixelRatio,
-      appendPadding:[12,0,0,0]
+      appendPadding:[12,12,0,0]
     });
 
     chart.source(this.state.report.week, {
