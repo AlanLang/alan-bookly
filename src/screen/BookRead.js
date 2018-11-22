@@ -8,6 +8,7 @@ import ReadLog from '../component/ReadLog'
 import timeInterval from '../utils/timeInterval'
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
+import moment from 'moment';
 
 const {alert,prompt} = Modal;
 
@@ -117,7 +118,8 @@ class BookRead extends Component {
   renderLog(){
     let logs = [];
     for(let log of this.state.log){
-      logs.push(<div key={log._id}><ReadLog  title="2018年11月3日" readNum={log.readNumber} readTime={timeInterval(log.timeArea)}></ReadLog><WhiteSpace /></div>)
+      let day = moment(log.stopTime).format("YYYY年MM月DD日 HH:mm");
+      logs.push(<div key={log._id}><ReadLog  title={day} readNum={log.readNumber} readTime={timeInterval(log.timeArea)}></ReadLog><WhiteSpace /></div>)
     }
     return logs
   }

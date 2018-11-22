@@ -27,6 +27,10 @@ class BookModel {
     return http.get(`readlog/log/${bookId}`)
   }
 
+  getReadReport(){
+    return http.get(`readlog/report`)
+  }
+
   uploadBookImg(file){
     return http.upload('upload',file)
   }
