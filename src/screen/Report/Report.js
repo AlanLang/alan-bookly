@@ -32,7 +32,7 @@ class Report extends Component {
             },
             {
                 "name": 21,
-                "value": 30
+                "value": 0
             },
             {
                 "name": 22,
@@ -40,7 +40,7 @@ class Report extends Component {
             }
         ],
         "days": 0,
-        "all": 4485
+        "all": 0
         }
     }
   }
@@ -78,7 +78,7 @@ class Report extends Component {
   }
   render() {
     return (
-      <div>
+      <div style={{marginTop:55}}>
         <ComTitle >阅读统计</ComTitle>
         <div className={style.continuous}>
           连续阅读<span className={style.continuousText}>{this.state.report.days}</span>天

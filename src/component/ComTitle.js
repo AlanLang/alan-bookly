@@ -56,7 +56,7 @@ class ComTitle extends Component {
   }
   render() {
     return (
-      <div >
+      <div className={style.group}>
         <NavBar 
         mode="light" 
         icon={"left" === this.props.type?<Icon type="left" />:''} 

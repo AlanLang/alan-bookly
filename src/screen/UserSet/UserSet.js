@@ -44,7 +44,7 @@ class UserSet extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginTop:50}}>
         <ComTitle >我</ComTitle>
         <div className={style.avatardiv}>
           {this.state.user.avatar?<img src={this.state.user.avatar} className={style.avatar}/>:''}

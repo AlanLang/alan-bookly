@@ -5,6 +5,9 @@
   line-height: 40px;
   text-align: center;
   color: white;
+  position: fixed;
+  top: 0px;
+  z-index: 999;
 }
 
 .menu{

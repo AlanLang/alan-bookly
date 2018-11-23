@@ -132,7 +132,7 @@ class BookRead extends Component {
       img:this.state.book.img
     }
     return (
-      <div>
+      <div style={{marginTop:50}}>
         <ComTitle type="left" onLeftClick={this.handleLeftClick.bind(this)}>读书记录</ComTitle>
         <TweenOne
           animation={[
