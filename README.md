@@ -1,4 +1,5 @@
 ## 达达阅读
+服务端：[alan-bookly-service](https://github.com/AlanLang/alan-bookly-service)
 ### 功能
 * 系统登录
 * 新建书籍
