@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import style from  './Login.css'
-import { Button, WhiteSpace,Toast } from 'antd-mobile';
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import sysModel from '../../models/SysModel'
+import TextField from '@material-ui/core/TextField';
 
 class Login extends Component {
   constructor () {
     super()
     this.state = {
       userName:'',
-      password:''
+      password:'',
+      open:false,
+      toastMsg:'请输入用户名'
     }
+  }
+  handleClose(){
+    this.setState({ open: false });
   }
   login(){
     const {userName,password} = this.state
     if(!userName){
-      Toast.info('请输入用户名', 1);
-      return
+      this.setState({ open: true, toastMsg:'请输入用户名'});
+      return true
     }
     if(!password){
-      Toast.info('请输入密码', 1);
-      return
+      this.setState({ open: true, toastMsg:'请输入密码'});
+      return true
     }
     sysModel.login(userName,password).then(re=>{
       // 登录成功，跳转到首页
@@ -32,21 +39,40 @@ class Login extends Component {
         <div className={style.loginTitle}>
           达达阅读
         </div>
-        <WhiteSpace size="xl"/>
         <div className={style.loginForm}>
-          <input className={style.loginInput} onChange={e=>this.setState({userName:e.target.value})} 
-          type="text" placeholder="用户名" name=""/>
-          <WhiteSpace/>
-          <input className={style.loginInput} onChange={e=>this.setState({password:e.target.value})} 
-          type="password" placeholder="密码" name=""/>
-          <WhiteSpace size="xl"/>
-          <WhiteSpace size="xl"/>
-          <Button onClick={this.login.bind(this)} type="primary">登录</Button>
-          <WhiteSpace size="lg"/>
-          <div>
+          <TextField
+            label="用户名"
+            value={this.state.name}
+            onChange={e=>this.setState({userName:e.target.value})}
+            margin="normal"
+          />
+          <TextField
+            label="密码"
+            type="password"
+            value={this.state.password}
+            onChange={e=>this.setState({password:e.target.value})}
+            margin="normal"
+          />
+
+          <Button style={{marginTop:36,backgroundColor:'#108ee9'}} onClick={this.login.bind(this)} variant="contained" color="primary">登录</Button>
+          <div style={{marginTop:12}}>
             <div className={style.loginForget}>忘记密码？</div>
           </div>
         </div>
+
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          open={this.state.open}
+          autoHideDuration={2000}
+          onClose={this.handleClose.bind(this)}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.toastMsg}</span>}
+        />
       </div>
     );
   }
