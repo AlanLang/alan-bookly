@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Button, WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
-
+import {WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
+import Button from '@material-ui/core/Button';
 import ComTitle from '../component/ComTitle'
 import ImgUpload from '../component/ImgUpload'
 import style from './index.css'
@@ -61,7 +61,7 @@ class BooksAdd extends Component {
         </div>
         <WingBlank>
           <WhiteSpace />
-          <Button onClick={this.handleAddBook.bind(this)} size="small" type="primary">添加</Button>
+          <Button className={style.blockbutton} onClick={this.handleAddBook.bind(this)} variant="contained" color="primary">添加</Button>
         </WingBlank>
       </div>
     );
