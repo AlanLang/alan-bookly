@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import style from  './Login.css'
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
+import {Button} from 'alanui-mobile';
+//import Button, { ButtonGroup } from '../components/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import sysModel from '../../models/SysModel'
 import TextField from '@material-ui/core/TextField';
@@ -53,8 +55,9 @@ class Login extends Component {
             onChange={e=>this.setState({password:e.target.value})}
             margin="normal"
           />
-
-          <Button style={{marginTop:36,backgroundColor:'#108ee9'}} onClick={this.login.bind(this)} variant="contained" color="primary">登录</Button>
+          <div style={{marginTop:36}}>
+            <Button block={true} onClick={this.login.bind(this)} theme="primary">登录</Button>
+          </div>
           <div style={{marginTop:12}}>
             <div className={style.loginForget}>忘记密码？</div>
           </div>
