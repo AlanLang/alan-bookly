@@ -1110,9 +1110,9 @@ ajv@^6.0.1, ajv@^6.1.0, ajv@^6.5.3, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-alanui-mobile@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/alanui-mobile/-/alanui-mobile-1.0.1.tgz#c6fc869ecf39435764acc919a86ca3b0e8557356"
+alanui-mobile@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/alanui-mobile/-/alanui-mobile-1.0.3.tgz#2e94663cd39c906db81ccb19a66cde1dbd9a2041"
   dependencies:
     classnames "^2.2.5"
     enquire.js "^2.1.6"
