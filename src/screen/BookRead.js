@@ -4,7 +4,7 @@ import Book from '../component/Book'
 import style from './index.css'
 import ComTitle from '../component/ComTitle'
 import {WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
-import Button from '@material-ui/core/Button';
+import {Button} from 'alanui-mobile';
 import ReadLog from '../component/ReadLog'
 import timeInterval from '../utils/timeInterval'
 import QueueAnim from 'rc-queue-anim';
@@ -158,9 +158,9 @@ class BookRead extends Component {
           <WhiteSpace />
           {
             this.state.readLog.type == 0?
-            <Button className={style.blockbutton} onClick={this.handleBeginButtonClick.bind(this)} variant="contained" color="primary">开始阅读</Button>
+            <Button className={style.blockbutton} onClick={this.handleBeginButtonClick.bind(this)} block={true} theme="primary">开始阅读</Button>
             :
-            <Button className={style.blockbutton} onClick={this.handleStopButtonClick.bind(this)} variant="contained" color="secondary">停止阅读{this.state.readTime}</Button>
+            <Button className={style.blockbutton} onClick={this.handleStopButtonClick.bind(this)} block={true} theme="danger">停止阅读{this.state.readTime}</Button>
           }
         </WingBlank>
         <WhiteSpace />

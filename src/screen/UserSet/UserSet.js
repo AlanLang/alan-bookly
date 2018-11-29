@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ComTitle from '../../component/ComTitle'
 import {Toast, List,Modal} from 'antd-mobile';
-import Button from '@material-ui/core/Button';
+import {Button} from 'alanui-mobile';
 import tokenUtil from '../../utils/TokenUtil'
 import sysModel from '../../models/SysModel'
 import storage from '../../utils/StorageUtil'
@@ -56,7 +56,7 @@ class UserSet extends Component {
           <Item extra={'男'}>性别</Item>
         </List>
         <div className={style.buttonGroup}>
-          <Button style={{width:'100%'}} variant="contained" color="secondary" onClick={this.handleLogout.bind(this)}>退出</Button>
+          <Button block={true} onClick={this.handleLogout.bind(this)}>退出</Button>
         </div>
       </div>
     );
