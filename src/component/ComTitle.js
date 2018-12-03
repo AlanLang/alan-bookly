@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Popover, NavBar, Icon } from 'antd-mobile'
+import {NavBar,Button,Icon} from 'alanui-mobile'
 import style from './ComTitle.css'
-const Item = Popover.Item;
 
 class ComTitle extends Component {
   constructor () {
@@ -16,54 +15,21 @@ class ComTitle extends Component {
     })
     this.props.onSelect(re)
   }
-  renderItem(){
-    let contnet = [];
-    if(!this.props.menu){
-      return contnet;
+  renderLeft(){
+    if(this.props.hasLeft){
+      return (<Button onClick={this.props.onLeftClick}>
+                    <Icon icon="arrow_back_ios" style={{color:'#108ee9'}}/>
+                </Button>)
     }
-    for(let item of this.props.menu){
-      contnet.push((
-        <Item key={item.key} value="scan">        
-        <svg className = {style.itemIcon} aria-hidden="true">
-          <use xlinkHref={item.icon}></use>
-        </svg> 
-        <span className={style.itemText}>添加书籍</span>
-        </Item>))
-    }
-    return contnet;
-  }
-  renderRight(){
-    if(!this.props.menu){
-      return null;
-    }
-    return(
-      <Popover mask
-        visible = {this.state.showMenu}
-        overlayClassName="fortest"
-        overlayStyle={{ color: 'currentColor' }}
-        overlay={ this.renderItem()}
-        align={{
-          overflow: { adjustY: 0, adjustX: 0 },
-          offset: [-10, 0],
-        }}
-        onVisibleChange={this.handleVisibleChange}
-        onSelect={this.handleMenuSelect.bind(this)}
-      >
-        <div className={style.titleIcon}>
-          <Icon type="ellipsis" />
-        </div>
-      </Popover>)
   }
   render() {
     return (
       <div className={style.group}>
-        <NavBar 
-        mode="light" 
-        icon={"left" === this.props.type?<Icon type="left" />:''} 
-        onLeftClick={this.props.onLeftClick}
-        rightContent={this.renderRight()}>
-          {this.props.children}
-        </NavBar>
+        <NavBar
+          style={{height:40,backgroundColor:'#fff',color:'#000',boxShadow: '0 2px 4px -1px rgba(0,0,0,.2)'}}
+          left={this.renderLeft()}
+          center={this.props.children}
+        />
       </div>
     );
   }

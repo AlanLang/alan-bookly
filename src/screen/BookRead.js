@@ -3,15 +3,14 @@ import BookModel from '../models/BookModel'
 import Book from '../component/Book'
 import style from './index.css'
 import ComTitle from '../component/ComTitle'
-import {WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
-import {Button} from 'alanui-mobile';
+import WhiteSpace from '../component/WhiteSpace'
+import WingBlank from '../component/WingBlank'
+import {Button,Toast,MessageBox} from 'alanui-mobile';
 import ReadLog from '../component/ReadLog'
 import timeInterval from '../utils/timeInterval'
 import QueueAnim from 'rc-queue-anim';
 import TweenOne from 'rc-tween-one';
 import moment from 'moment';
-
-const {alert,prompt} = Modal;
 
 class BookRead extends Component {
   constructor () {
@@ -90,31 +89,19 @@ class BookRead extends Component {
     })
   }
   handleStopButtonClick(){
-    prompt('提醒', '是否完成本次阅读？',[{text: '算了'},
-      {
-        text: '提交',
-        onPress: value => new Promise((resolve, reject)=>{
-          if(this.state.readLog.num >= value){
-            Toast.info(`页码数必须大于${this.state.readLog.num}`, 1);
-            setTimeout(() => {
-              reject();
-            }, 1000);
-          }else{
-            this.stopRead(value - this.state.readLog.num,()=>resolve())
-          }
-        })
-      },
-    ], 'default', null, ['请输入页码数'])
+    MessageBox.prompt({
+      title: '提示',
+      message: '是否完成本次阅读？'
+    });
   }
   handleBeginButtonClick(){
-    alert('提醒', '开始本次阅读吗?', [{ text: '算了'},
-      {
-        text: '阅读',
-        onPress:()=>{
-          this.beginRead()//开始阅读
-        }
-      },
-    ])
+    MessageBox.confirm({
+      title:'提示',
+      message:'是否开始本次阅读?',
+      onPress:()=>{
+        this.beginRead()//开始阅读
+      }
+    })
   }
   renderLog(){
     let logs = [];
@@ -134,7 +121,7 @@ class BookRead extends Component {
     }
     return (
       <div style={{marginTop:50}}>
-        <ComTitle type="left" onLeftClick={this.handleLeftClick.bind(this)}>读书记录</ComTitle>
+        <ComTitle hasLeft={true} onLeftClick={this.handleLeftClick.bind(this)}>读书记录</ComTitle>
         <TweenOne
           animation={[
           { scale: 0.9 },

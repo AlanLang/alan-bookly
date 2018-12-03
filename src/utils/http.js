@@ -1,4 +1,4 @@
-import { Toast } from 'antd-mobile';
+import {Toast} from 'alanui-mobile';
 import tokenUtil from './TokenUtil'
 
 const base_url = "http://langwenda.com:7101/api/"
@@ -25,10 +25,13 @@ const checkStatus = response=>{
   }
   const errortext = codeMessage[response.status] || response.statusText;
   Toast.fail(`请求错误：${errortext}`);
+  Toast.show({
+    message: `请求错误：${errortext}`,
+    position:'bottom',
+  });
   throw `请求错误：${errortext}`;
 }
 const request = (url: string, config: any) => {
-  const loading = Toast.loading('正在获取')
   url = base_url + url
   let headers = {headers:{
     'X-Requested-With': 'XMLHttpRequest',
@@ -46,15 +49,20 @@ const request = (url: string, config: any) => {
   .then(checkStatus)
   .then(response => {
     let res = response.json().then(re=>{
-      Toast.hide(loading)
       if(re.code === 0){
         return re.data
       }else{
         if(re.error){
-          Toast.fail(re.error)
+          Toast.show({
+            message: re.error,
+            position:'bottom',
+          });
           return re
         }else{
-          Toast.fail("接口访问错误")
+          Toast.show({
+            message: `接口访问错误`,
+            position:'bottom',
+          });
           throw re
         }
       }

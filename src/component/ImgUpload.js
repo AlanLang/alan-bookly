@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import style from './ImgUpload.css'
-import { ActionSheet, WingBlank, WhiteSpace, Button, Toast,ImagePicker} from 'antd-mobile';
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
 if (isIPhone) {

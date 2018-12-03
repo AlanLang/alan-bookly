@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from './ComTabar.css'
-
-import { TabBar } from 'antd-mobile';
+import {ButtonNavigation,ButtonNavigationItem,Icon} from 'alanui-mobile'
 class ComTabar extends Component {
   constructor () {
     super()
@@ -30,34 +29,26 @@ class ComTabar extends Component {
     }
     for(let item of this.props.tabar){
       contnet.push((
-        <TabBar.Item
-          title={item.text}
-          key={item.key}
-          icon={this.renderIcon(item.icon)}
-          selectedIcon={this.renderIcon(item.selectedIcon)}
-          selected={this.state.selectedTab === item.key}
-          badge={item.badge}
-          onPress={() => {
-            this.setState({
-              selectedTab: item.key,
-            });
-            if(this.props.onTabarSelect){
-              this.props.onTabarSelect(item)
-            }
-            
-          }}
-        >
-        </TabBar.Item>
+        <ButtonNavigationItem 
+        key={item.key} 
+        label={item.text} 
+        icon={this.renderIcon(item.icon)} 
+        selectedIcon={this.renderIcon(item.selectedIcon)}/>
       ))
     }
     return contnet;
   }
+  handleChange=(v)=>{
+    if(this.props.onTabarSelect){
+      this.props.onTabarSelect(this.props.tabar[v.index])
+    }
+  }
   render() {
     return (
       <div className={style.comtabar}>
-      	<TabBar>
+        <ButtonNavigation onChange={this.handleChange}>
           {this.renderItem()}
-      	</TabBar>
+        </ButtonNavigation>
       </div>
     );
   }

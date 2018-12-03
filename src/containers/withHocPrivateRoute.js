@@ -2,8 +2,7 @@ import React from 'react';
 import {Route,Redirect,withRouter} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import tokenUtil from '../utils/TokenUtil';
-import { Toast } from 'antd-mobile';
-
+import {Toast} from 'alanui-mobile';
 function withHocPrivateRoute(WrappedComponent){
     if(!!!WrappedComponent){
         throw new Error("缺少组件参数");
@@ -20,9 +19,13 @@ function withHocPrivateRoute(WrappedComponent){
             this.setState({isAuthenticated:isAuthenticated})
             if(!isAuthenticated){
               const {history} = this.props;
-              Toast.fail("登陆已过期，请重新登陆",1,re=>{
-                history.push('/login')
-              })
+              Toast.show({
+                message: '登陆已过期，请重新登陆',
+                position:'bottom',
+                onClose:()=>{
+                  history.push('/login')
+                }
+              });
             }
         }
         render(){
