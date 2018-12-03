@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {WhiteSpace,WingBlank,Modal,Toast} from 'antd-mobile';
 import {Button} from 'alanui-mobile';
 import ComTitle from '../component/ComTitle'
 import ImgUpload from '../component/ImgUpload'
@@ -27,9 +26,7 @@ class BooksAdd extends Component {
       pageNumber:parseInt(this.state.pageNumber)
     }
     BookModel.addBook(book).then(re=>{
-      Toast.success('书籍添加成功',2,re=>{
-        this.props.history.goBack()
-      })
+      this.props.history.goBack()
     })
   }
   handleChange(event){
@@ -59,10 +56,9 @@ class BooksAdd extends Component {
             <input onChange={e=>this.setState({pageNumber:e.target.value})} type="text" placeholder="页码数" name=""/>
           </div>
         </div>
-        <WingBlank>
-          <WhiteSpace />
+        <div style={{padding:12}}>
           <Button className={style.blockbutton} onClick={this.handleAddBook.bind(this)} theme="primary">添加</Button>
-        </WingBlank>
+        </div>
       </div>
     );
   }

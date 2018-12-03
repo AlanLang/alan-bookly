@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import style from  './Login.css'
-import {Button,Inputtext} from 'alanui-mobile';
-import Snackbar from '@material-ui/core/Snackbar';
+import {Button,Inputtext,Toast} from 'alanui-mobile';
 import sysModel from '../../models/SysModel'
 class Login extends Component {
   constructor () {
@@ -19,11 +18,17 @@ class Login extends Component {
   login(){
     const {userName,password} = this.state
     if(!userName){
-      this.setState({ open: true, toastMsg:'请输入用户名'});
+      Toast.show({
+        message: '请输入用户名',
+        position:'bottom'
+      });
       return true
     }
     if(!password){
-      this.setState({ open: true, toastMsg:'请输入密码'});
+      Toast.show({
+        message: '请输入密码',
+        position:'bottom'
+      });
       return true
     }
     sysModel.login(userName,password).then(re=>{
@@ -39,17 +44,16 @@ class Login extends Component {
         </div>
         <div className={style.loginForm}>
           <Inputtext
-            label="用户名"
+            placeholder="用户名"
             value={this.state.name}
-            onChange={e=>this.setState({userName:e.target.value})}
-            animated={true}
+            onChange={(e)=>this.setState({userName:e.value})}
           />
           <Inputtext
-            label="密码"
+            placeholder="密码"
             type="password"
             value={this.state.password}
-            onChange={e=>this.setState({password:e.target.value})}
-            animated={true}
+            onChange={(e)=>this.setState({password:e.value})}
+            style={{marginTop:24}}
           />
           <div style={{marginTop:36}}>
             <Button block={true} onClick={this.login.bind(this)} theme="primary">登录</Button>
@@ -58,20 +62,6 @@ class Login extends Component {
             <div className={style.loginForget}>忘记密码？</div>
           </div>
         </div>
-
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'center',
-          }}
-          open={this.state.open}
-          autoHideDuration={2000}
-          onClose={this.handleClose.bind(this)}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">{this.state.toastMsg}</span>}
-        />
       </div>
     );
   }

@@ -3,7 +3,6 @@ import ComTitle from '../component/ComTitle'
 import Book from '../component/Book'
 import style from './index.css'
 import BookModel from '../models/BookModel'
-import { Toast } from 'antd-mobile';
 import storage from '../utils/StorageUtil'
 
 class Books extends Component {

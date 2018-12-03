@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import ComTitle from '../../component/ComTitle'
-import {Toast, List,Modal} from 'antd-mobile';
-import {Button} from 'alanui-mobile';
+import {Button,MessageBox,List, ListItem, ListItemText,ListItemAction} from 'alanui-mobile';
 import tokenUtil from '../../utils/TokenUtil'
 import sysModel from '../../models/SysModel'
 import storage from '../../utils/StorageUtil'
 import style from './UserSet.css'
 const Item = List.Item;
-const {alert} = Modal;
 class UserSet extends Component {
   constructor () {
     super()
@@ -32,15 +30,14 @@ class UserSet extends Component {
     })
   }
   handleLogout(){
-    alert('提醒', '确定要退出吗?', [{ text: '算了'},
-      {
-        text: '退出',
-        onPress:()=>{
-          tokenUtil.clearToken()
-          this.props.history.push('/login')
-        }
-      },
-    ])
+    MessageBox.confirm({
+      title:'提示',
+      message:'确定要退出吗？',
+      onClose:()=>{
+        tokenUtil.clearToken()
+        this.props.history.push('/login')
+      }
+    })
   }
 
   render() {
@@ -50,13 +47,26 @@ class UserSet extends Component {
         <div className={style.avatardiv}>
           {this.state.user.avatar?<img src={this.state.user.avatar} className={style.avatar}/>:''}
         </div>
-        <List renderHeader={() => '基本信息'} className="my-list">
-          <Item extra={this.state.user.realName}>昵称</Item>
-          <Item extra={this.state.user.mobile}>手机</Item>
-          <Item extra={'男'}>性别</Item>
+        <List header="基本信息" className="my-list">
+          <ListItem>
+              <ListItemAction>
+                昵称
+              </ListItemAction>
+              <ListItemText style={{textAlign:'right'}}>
+                {this.state.user.realName}
+              </ListItemText>
+          </ListItem>
+          <ListItem>
+              <ListItemAction>
+                手机
+              </ListItemAction>
+              <ListItemText style={{textAlign:'right'}}>
+                {this.state.user.mobile}
+              </ListItemText>
+          </ListItem>
         </List>
         <div className={style.buttonGroup}>
-          <Button block={true} onClick={this.handleLogout.bind(this)}>退出</Button>
+          <Button theme="danger" block={true} onClick={this.handleLogout.bind(this)}>退出</Button>
         </div>
       </div>
     );
