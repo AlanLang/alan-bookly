@@ -6,7 +6,6 @@ class SysModel {
       mobile:userName,
       password:password
     }).then(re=>{
-      console.log(re)
       tokenUtil.setToken(re.token,true)
       return re
     })

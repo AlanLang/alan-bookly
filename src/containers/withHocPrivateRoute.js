@@ -19,13 +19,11 @@ function withHocPrivateRoute(WrappedComponent){
             this.setState({isAuthenticated:isAuthenticated})
             if(!isAuthenticated){
               const {history} = this.props;
-              Toast.show({
-                message: '登陆已过期，请重新登陆',
-                position:'bottom',
-                onClose:()=>{
-                  history.push('/login')
-                }
-              });
+              // Toast.show({
+              //   message: '登陆已过期，请重新登陆',
+              //   position:'bottom'
+              // });
+              history.push('/login')
             }
         }
         render(){

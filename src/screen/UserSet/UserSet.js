@@ -33,9 +33,10 @@ class UserSet extends Component {
     MessageBox.confirm({
       title:'提示',
       message:'确定要退出吗？',
-      onClose:()=>{
+      onConfirm:()=>{
         tokenUtil.clearToken()
         this.props.history.push('/login')
+        return true;
       }
     })
   }

@@ -57,7 +57,7 @@ class BooksAdd extends Component {
           </div>
         </div>
         <div style={{padding:12}}>
-          <Button className={style.blockbutton} onClick={this.handleAddBook.bind(this)} theme="primary">添加</Button>
+          <Button block={true} onClick={this.handleAddBook.bind(this)} theme="primary">添加</Button>
         </div>
       </div>
     );

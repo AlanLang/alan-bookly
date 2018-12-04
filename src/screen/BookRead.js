@@ -80,25 +80,38 @@ class BookRead extends Component {
       this.loadBookReadLogStatus()
     })
   }
-  stopRead(value,cb){
+  stopRead(value){
     BookModel.stopRead(this.state.readLog.log._id,value).then(re=>{
       this.loadBookReadLogStatus()
       this.loadReadLog()
       clearInterval(this.timerID);
-      cb()
     })
   }
   handleStopButtonClick(){
     MessageBox.prompt({
       title: '提示',
-      message: '是否完成本次阅读？'
+      message: '请输入本次阅读的页码',
+      cancelButtonText:'算了',
+      onConfirm:(value)=>{
+        if(this.state.readLog.num >= value){
+          Toast.show({
+              message:`页码数必须大于${this.state.readLog.num}`,
+              position:'bottom'
+          })
+          return false;
+        }else{
+          this.stopRead(value - this.state.readLog.num)
+          return true;
+        }
+      }
     });
   }
   handleBeginButtonClick(){
     MessageBox.confirm({
       title:'提示',
       message:'是否开始本次阅读?',
-      onPress:()=>{
+      cancelButtonText:'算了',
+      onConfirm:()=>{
         this.beginRead()//开始阅读
       }
     })
