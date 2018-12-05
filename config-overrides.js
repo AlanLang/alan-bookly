@@ -19,7 +19,7 @@ module.exports = function override(config, env) {
 function rewireCss(config) {
   const cssLoader = {
       test: /\.css$/,
-      exclude: /node_modules|antd-mobile\.css/,
+      exclude: /node_modules|alanui-mobile\.css/,
       use: [
         require.resolve('style-loader'),
         {
@@ -61,7 +61,7 @@ function rewireCss(config) {
 
 function rewireLess(config){
   const lessLoader = {
-      test: /\.less$/,
+      test: /\.scss$/,
       use: [
         require.resolve('style-loader'),
         require.resolve('css-loader'),
@@ -86,7 +86,7 @@ function rewireLess(config){
           },
         },
         {
-          loader: require.resolve('less-loader'),
+          loader: require.resolve('sass-loader'),
           options: {
             // theme vars, also can use theme.js instead of this.
             //modifyVars: { "@brand-primary": "#1DA57A" },

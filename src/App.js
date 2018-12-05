@@ -6,6 +6,7 @@ import Login from './screen/Login/Login'
 import { BrowserRouter as Router, Route,Redirect,Switch} from 'react-router-dom';
 import withHocPrivateRoute from './containers/withHocPrivateRoute';
 import style from  './index.css';
+import './style/theme.scss';
 const  PrivateRoute =  withHocPrivateRoute(Route);
 
 class App extends Component {
