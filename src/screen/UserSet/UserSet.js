@@ -30,13 +30,13 @@ class UserSet extends Component {
     })
   }
   handleLogout(){
-    MessageBox.confirm({
+    const mess = MessageBox.confirm({
       title:'提示',
       message:'确定要退出吗？',
       onConfirm:()=>{
+        MessageBox.close(mess)
         tokenUtil.clearToken()
         this.props.history.push('/login')
-        return true;
       }
     })
   }

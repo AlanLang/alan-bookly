@@ -88,31 +88,31 @@ class BookRead extends Component {
     })
   }
   handleStopButtonClick(){
-    MessageBox.prompt({
+    const mess = MessageBox.prompt({
       title: '提示',
       message: '请输入本次阅读的页码',
       cancelButtonText:'算了',
       onConfirm:(value)=>{
         if(this.state.readLog.num >= value){
-          Toast.show({
+          Toast.error({
               message:`页码数必须大于${this.state.readLog.num}`,
               position:'bottom'
           })
-          return false;
         }else{
           this.stopRead(value - this.state.readLog.num)
-          return true;
+          MessageBox.close(mess)
         }
       }
     });
   }
   handleBeginButtonClick(){
-    MessageBox.confirm({
+    const mess = MessageBox.confirm({
       title:'提示',
       message:'是否开始本次阅读?',
       cancelButtonText:'算了',
       onConfirm:()=>{
         this.beginRead()//开始阅读
+        MessageBox.close(mess)
       }
     })
   }

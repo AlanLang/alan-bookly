@@ -5,7 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@antv/f2": "^3.3.0",
-    "alanui-mobile": "^1.0.12",
+    "alanui-mobile": "^1.0.13",
     "i": "^0.3.6",
     "moment": "^2.22.2",
     "rc-queue-anim": "^1.6.7",
