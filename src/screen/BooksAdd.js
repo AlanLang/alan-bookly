@@ -35,7 +35,7 @@ class BooksAdd extends Component {
       formData.append('file', event.target.files[0])
       BookModel.uploadBookImg(formData).then(re=>{
         this.setState({
-          img:`http://langwenda.com:7001/image/${re._id}`
+          img:`http://langwenda.com:7101/image/${re._id}`
         })
       })
     }

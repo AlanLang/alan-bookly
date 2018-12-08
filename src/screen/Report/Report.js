@@ -4,212 +4,48 @@ import F2 from '@antv/f2'
 import bookModel from '../../models/BookModel'
 import timeInterval from '../../utils/timeInterval'
 import style from './Report.css'
+const moment = require('moment');
+
 
 class Report extends Component {
   constructor () {
     super()
     this.state = {
-      "report": {
-        "week": [
-            {
-                "name": "16天",
-                "value": 4
-            },
-            {
-                "name": "17天",
-                "value": 0
-            },
-            {
-                "name": "18天",
-                "value": 0
-            },
-            {
-                "name": "19天",
-                "value": 0
-            },
-            {
-                "name": "20天",
-                "value": 0
-            },
-            {
-                "name": "21天",
-                "value": 8
-            },
-            {
-                "name": "22天",
-                "value": 0
-            }
-        ],
-        "days": 0,
-        "all": 0
-        },
-        month:[
-        {
-          date: "2018-06-05",
-          value: 116
-        }, {
-          date: "2018-06-06",
-          value: 129
-        }, {
-          date: "2018-06-07",
-          value: 135
-        }, {
-          date: "2018-06-08",
-          value: 86
-        }, {
-          date: "2018-06-09",
-          value: 73
-        }, {
-          date: "2018-06-10",
-          value: 85
-        }, {
-          date: "2018-06-11",
-          value: 73
-        }, {
-          date: "2018-06-12",
-          value: 68
-        }, {
-          date: "2018-06-13",
-          value: 92
-        }, {
-          date: "2018-06-14",
-          value: 130
-        }, {
-          date: "2018-06-15",
-          value: 245
-        }, {
-          date: "2018-06-16",
-          value: 139
-        }, {
-          date: "2018-06-17",
-          value: 115
-        }, {
-          date: "2018-06-18",
-          value: 111
-        }, {
-          date: "2018-06-19",
-          value: 309
-        }, {
-          date: "2018-06-20",
-          value: 206
-        }, {
-          date: "2018-06-21",
-          value: 137
-        }, {
-          date: "2018-06-22",
-          value: 128
-        }, {
-          date: "2018-06-23",
-          value: 85
-        }, {
-          date: "2018-06-24",
-          value: 94
-        }, {
-          date: "2018-06-25",
-          value: 71
-        }, {
-          date: "2018-06-26",
-          value: 106
-        }, {
-          date: "2018-06-27",
-          value: 84
-        }, {
-          date: "2018-06-28",
-          value: 93
-        }, {
-          date: "2018-06-29",
-          value: 85
-        }, {
-          date: "2018-06-30",
-          value: 73
-        }, {
-          date: "2018-07-01",
-          value: 83
-        }, {
-          date: "2018-07-02",
-          value: 125
-        }, {
-          date: "2018-07-03",
-          value: 107
-        }, {
-          date: "2018-07-04",
-          value: 82
-        }, {
-          date: "2018-07-05",
-          value: 44
-        }, {
-          date: "2018-07-06",
-          value: 72
-        }, {
-          date: "2018-07-07",
-          value: 106
-        }, {
-          date: "2018-07-08",
-          value: 107
-        }, {
-          date: "2018-07-09",
-          value: 66
-        }, {
-          date: "2018-07-10",
-          value: 91
-        }, {
-          date: "2018-07-11",
-          value: 92
-        }, {
-          date: "2018-07-12",
-          value: 113
-        }, {
-          date: "2018-07-13",
-          value: 107
-        }, {
-          date: "2018-07-14",
-          value: 131
-        }, {
-          date: "2018-07-15",
-          value: 111
-        }, {
-          date: "2018-07-16",
-          value: 64
-        }, {
-          date: "2018-07-17",
-          value: 69
-        }, {
-          date: "2018-07-18",
-          value: 88
-        }, {
-          date: "2018-07-19",
-          value: 77
-        }, {
-          date: "2018-07-20",
-          value: 83
-        }, {
-          date: "2018-07-21",
-          value: 111
-        }, {
-          date: "2018-07-22",
-          value: 57
-        }, {
-          date: "2018-07-23",
-          value: 55
-        }, {
-          date: "2018-07-24",
-          value: 60
-        }
-        ]
+      "continueDays":0,
+      "totalRead":0,
+      "weekRead":[]
     }
   }
   componentWillMount(){
     bookModel.getReadReport().then(re=>{
-      this.setState({
-        report:re,
-        week:re.week.map(data=>{
-          return {
-            name:data.name+"日",
-            value:data.value
-          }
+      if(re.count > 0){
+        const today = moment().format("YYYYMMDD")
+        const todayRead = re.list.find(data=>data.moment == today);
+        let weekRead = [];
+        for(let i = 0; i <7; i++){
+          const thisDay = moment().subtract(i,"d").format("YYYYMMDD")
+          const thisRead = re.list.find(data=>data.moment == thisDay)
+          weekRead.push({
+            name:moment().subtract(i,"d").format("DD")+"日",
+            value:thisRead?thisRead.readNumber:0
+          })
+        }
+        let monthRead = [];
+        for(let i = 0; i <30; i++){
+          const thisDay = moment().subtract(i,"d").format("YYYYMMDD")
+          const thisRead = re.list.find(data=>data.moment == thisDay)
+          monthRead.push({
+            date:moment().subtract(i,"d").format("YYYY-MM-DD"),
+            value:thisRead?thisRead.readNumber:0
+          })
+        }
+        this.setState({
+          "continueDays":todayRead?todayRead.continueDay:0,
+          "totalRead":re.list[0].timeCount,
+          "weekRead":weekRead.reverse(),
+          "monthRead":monthRead.reverse()
         })
-      })
-      console.log(this.state)
+      }
       this.randerReport()
       this.randerMonth()
     })
@@ -220,7 +56,7 @@ class Report extends Component {
       pixelRatio: window.devicePixelRatio,
       appendPadding:[12,5,40,0]
     });
-    chart.source(this.state.month, {
+    chart.source(this.state.monthRead, {
       value: {
         tickCount: 5,
         min: 0
@@ -262,7 +98,7 @@ class Report extends Component {
       appendPadding:[12,5,5,0]
     });
 
-    chart.source(this.state.week, {
+    chart.source(this.state.weekRead, {
       sales: {
         tickCount: 5
       }
@@ -272,7 +108,7 @@ class Report extends Component {
       onShow: function onShow(ev) {
         let items = ev.items;
         items[0].name = null;
-        items[0].name = items[0].title;
+        items[0].name = items[0].name;
         items[0].value = items[0].value+"页";
       }
     });
@@ -284,17 +120,17 @@ class Report extends Component {
       <div style={{marginTop:55}}>
         <ComTitle >阅读统计</ComTitle>
         <div className={style.continuous}>
-          连续阅读<span className={style.continuousText}>{this.state.report.days}</span>天
+          连续阅读<span className={style.continuousText}>{this.state.continueDays}</span>天
         </div>
         <div className={style.total}>
-          累计阅读 {timeInterval(this.state.report.all)}
+          累计阅读 {timeInterval(this.state.totalRead)}
         </div>
         <div className={style.week}>
           一周阅读数据
           <canvas className={style.weekReport} id="weekNode"></canvas>
         </div>
         <div className={style.week}>
-          月阅读统计
+          阅读趋势
           <canvas className={style.weekReport} id="monthNode"></canvas>
         </div>
       </div>
