@@ -4,7 +4,7 @@ import Book from '../component/Book'
 import style from './index.css'
 import BookModel from '../models/BookModel'
 import storage from '../utils/StorageUtil'
-import {FabButton,Icon} from 'alanui-mobile';
+import {Button,Icon} from 'alanui-mobile';
 
 class Books extends Component {
   constructor () {
@@ -70,10 +70,10 @@ class Books extends Component {
         <div className={style.bookGroup}>
           {this.renderBook()}
         </div>
-        <FabButton reverse={true} style={{bottom:70}} icon={(<Icon icon="add"/>)}>
-            <Icon icon="add" onClick={this.handleAddBook}/>
-            <Icon icon="face"/>
-        </FabButton>
+        <Button onClick={this.handleAddBook} theme="primary" shape="circle" size="2x" 
+        style={{right: 24,position:'absolute',bottom:80}}>
+            <Icon icon="add"/>
+        </Button>
       </div>
     );
   }
