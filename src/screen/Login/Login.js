@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import style from  './Login.css'
-import {Button,Inputtext,Toast} from 'alanui-mobile';
+import {Button,Inputtext,Toast,MessageBox,Progress} from 'alanui-mobile';
 import sysModel from '../../models/SysModel'
 class Login extends Component {
   constructor () {
@@ -31,8 +31,18 @@ class Login extends Component {
       });
       return true
     }
+
+    const loading = MessageBox.show({
+      message: (
+          <div className="Row Row-column justify-center">
+          <p>正在登录...</p>
+          <Progress loading={true}/>
+      </div>),
+      hideBackdrop: true,
+    });
     sysModel.login(userName,password).then(re=>{
       // 登录成功，跳转到首页
+      MessageBox.close(loading)
       this.props.history.push('/tab/book')
     })
   }
