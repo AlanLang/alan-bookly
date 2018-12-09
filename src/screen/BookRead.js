@@ -73,9 +73,8 @@ class BookRead extends Component {
   beginRead(){
     BookModel.beginRead(this.props.match.params.id).then(re=>{
       this.setState({
-        readLog:{
-          type:1
-        }
+        readLog:{type:1},
+        readTime:0
       })
       this.loadBookReadLogStatus()
     })

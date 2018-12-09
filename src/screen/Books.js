@@ -70,8 +70,8 @@ class Books extends Component {
         <div className={style.bookGroup}>
           {this.renderBook()}
         </div>
-        <Button onClick={this.handleAddBook} theme="primary" shape="circle" size="2x" 
-        style={{right: 24,position:'absolute',bottom:80}}>
+        <Button onClick={this.handleAddBook} theme="primary" shape="circle" 
+        style={{right: 24,position:'absolute',bottom:80,paddingLeft:5}}>
             <Icon icon="add"/>
         </Button>
       </div>
