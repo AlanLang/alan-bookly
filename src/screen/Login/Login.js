@@ -50,7 +50,7 @@ class Login extends Component {
     return (
       <div className={style.loginPage}>
         <div className={style.loginTitle}>
-          达达阅读
+          bookly
         </div>
         <div className={style.loginForm}>
           <Inputtext
