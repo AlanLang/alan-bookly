@@ -19,6 +19,7 @@ class Report extends Component {
   componentWillMount(){
     bookModel.getReadReport().then(re=>{
       if(re.count > 0){
+        console.log(re);
         const today = moment().format("YYYYMMDD")
         const todayRead = re.list.find(data=>data.moment == today);
         let weekRead = [];
@@ -41,7 +42,7 @@ class Report extends Component {
         }
         this.setState({
           "continueDays":todayRead?todayRead.continueDay:0,
-          "totalRead":re.list[0].timeCount,
+          "totalRead":re.sumTime,
           "weekRead":weekRead.reverse(),
           "monthRead":monthRead.reverse()
         })
