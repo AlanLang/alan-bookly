@@ -63,7 +63,12 @@ class BookRead extends Component {
       }else{
         let start = Date.parse(this.state.readLog.log.startTime);
         let now = new Date()
-        tiemArea = timeInterval((now.getTime() - start)/1000)
+        if((now.getTime() - start)/1000 > 0){
+          tiemArea = timeInterval((now.getTime() - start)/1000)
+        }else{
+          tiemArea = "正在阅读"
+        }
+        
       }
       this.setState({
         readTime:`(${tiemArea})`
@@ -81,10 +86,9 @@ class BookRead extends Component {
   }
   cancleRead(){
     BookModel.cancleRead(this.state.readLog.log._id).then(re=>{
-      this.setState({
-        readLog:{type:1},
-        readTime:0
-      })
+      this.loadBookReadLogStatus()
+      this.loadReadLog()
+      clearInterval(this.timerID);
     })
   }
   stopRead(value){
