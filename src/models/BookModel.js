@@ -23,6 +23,10 @@ class BookModel {
     return http.put(`readlog/${logId}`,{readNumber:parseInt(readNumber)})
   }
 
+  cancleRead(logId){
+    return http.delete(`readlog/${logId}`)
+  }
+
   getReadLog(bookId){
     return http.get(`readlog/log/${bookId}`)
   }

@@ -24,7 +24,6 @@ const checkStatus = response=>{
     return response;
   }
   const errortext = codeMessage[response.status] || response.statusText;
-  Toast.fail(`请求错误：${errortext}`);
   Toast.show({
     message: `请求错误：${errortext}`,
     position:'bottom',

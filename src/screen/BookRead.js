@@ -79,11 +79,30 @@ class BookRead extends Component {
       this.loadBookReadLogStatus()
     })
   }
+  cancleRead(){
+    BookModel.cancleRead(this.state.readLog.log._id).then(re=>{
+      this.setState({
+        readLog:{type:1},
+        readTime:0
+      })
+    })
+  }
   stopRead(value){
     BookModel.stopRead(this.state.readLog.log._id,value).then(re=>{
       this.loadBookReadLogStatus()
       this.loadReadLog()
       clearInterval(this.timerID);
+    })
+  }
+  handleCancleClick(){
+    const mess = MessageBox.confirm({
+      title:'提示',
+      message:'是否放弃本次阅读?',
+      cancelButtonText:'算了',
+      onConfirm:()=>{
+        this.cancleRead()//开始阅读
+        MessageBox.close(mess)
+      }
     })
   }
   handleStopButtonClick(){
@@ -158,8 +177,10 @@ class BookRead extends Component {
           {
             this.state.readLog.type == 0?
             <Button className={style.blockbutton} onClick={this.handleBeginButtonClick.bind(this)} block={true} theme="primary">开始阅读</Button>
-            :
-            <Button className={style.blockbutton} onClick={this.handleStopButtonClick.bind(this)} block={true} theme="danger">停止阅读{this.state.readTime}</Button>
+            :<div>
+            <Button className={style.blockbutton} onClick={this.handleStopButtonClick.bind(this)} block={true} theme="primary">停止阅读{this.state.readTime}</Button>
+            <Button style={{marginTop:12}} onClick={this.handleCancleClick.bind(this)} block={true} theme="danger">放弃阅读</Button>
+            </div>
           }
         </WingBlank>
         <WhiteSpace />
